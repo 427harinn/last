@@ -10,9 +10,29 @@
     <script src="js/keys.js"></script>
     <script src="js/game.js"></script>
     <script>
+      let ncmb = new NCMB(this.APPLICATION_KEY, this.CLIENT_KEY);
+      let UTdata = ncmb.DataStore("GameScore_easy");
+      let key = "name";
+
+         function fetchAll() {
+      UTdata.fetchAll()
+        .then(function(results) {
+          let msg = "";
+          for (let i = 0; i < results.length; i++) {
+            msg += results[i].get(key) + "<br>";
+          }
+          console.log(msg);
+          
+        })
+        .catch(function(error) {
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("delete fail:" + JSON.stringify(error));
+        })
+    }
     </script>
 </head>
 <body>
-  <input type="button" value="Start" name="start "onclick="startGame()"/>
+  <input type="button" value="Start" name="start "onclick="fetchAll()"/>
 </body>
 </html>
