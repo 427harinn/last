@@ -10,22 +10,12 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/keys.js"></script>
   <script src="js/game.js"></script>
+  <script src="js/ranking.js"></script>
   <script>
     let ncmb = new NCMB(this.APPLICATION_KEY, this.CLIENT_KEY);
     let UTdata = ncmb.DataStore("GameScore_easy");
-    let key = "name";
-    var stage = 0;
-
-    function draw() {
-      switch (stage) {
-        case stage1:
-          stage1();
-          break;
-        case stage2:
-          stage2();
-          break;
-      }
-    }
+    let scorekey = "score";
+    let namekey = "name";
 
     function fetchAll() {
       UTdata.fetchAll()
@@ -35,7 +25,6 @@
             msg += results[i].get(key) + "<br>";
           }
           console.log(msg);
-
         })
         .catch(function(error) {
           $("#display").removeClass();
@@ -47,6 +36,8 @@
 </head>
 
 <body>
+  <h1>上から落ちてくるのを<br>拾おう</h1>
+  <input type="button" value="ランキング" name="ranking"   onclick="ranking()" />
   <input type="button" value="易しい" name="easystart " onclick="startGame1()" />
   <input type="button" value="普通" name="normalstart " onclick="startGame2()" />
   <input type="button" value="難しい" name="hardstart " onclick="startGame3()" />
