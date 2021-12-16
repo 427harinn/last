@@ -1,20 +1,33 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-    <script src="components/loader.js"></script>
-    <link rel="stylesheet" href="components/loader.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/keys.js"></script>
-    <script src="js/game.js"></script>
-    <script>
-      let ncmb = new NCMB(this.APPLICATION_KEY, this.CLIENT_KEY);
-      let UTdata = ncmb.DataStore("GameScore_easy");
-      let key = "name";
 
-         function fetchAll() {
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/keys.js"></script>
+  <script src="js/game.js"></script>
+  <script>
+    let ncmb = new NCMB(this.APPLICATION_KEY, this.CLIENT_KEY);
+    let UTdata = ncmb.DataStore("GameScore_easy");
+    let key = "name";
+    var stage = 0;
+
+    function draw() {
+      switch (stage) {
+        case stage1:
+          stage1();
+          break;
+        case stage2:
+          stage2();
+          break;
+      }
+    }
+
+    function fetchAll() {
       UTdata.fetchAll()
         .then(function(results) {
           let msg = "";
@@ -22,7 +35,7 @@
             msg += results[i].get(key) + "<br>";
           }
           console.log(msg);
-          
+
         })
         .catch(function(error) {
           $("#display").removeClass();
@@ -30,9 +43,13 @@
           $("#display").html("delete fail:" + JSON.stringify(error));
         })
     }
-    </script>
+  </script>
 </head>
+
 <body>
-  <input type="button" value="Start" name="start "onclick="fetchAll()"/>
+  <input type="button" value="易しい" name="easystart " onclick="startGame1()" />
+  <input type="button" value="普通" name="normalstart " onclick="startGame2()" />
+  <input type="button" value="難しい" name="hardstart " onclick="startGame3()" />
 </body>
+
 </html>
