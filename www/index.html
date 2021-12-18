@@ -32,6 +32,260 @@
           $("#display").html("delete fail:" + JSON.stringify(error));
         })
     }
+
+     function rgbToColor(r, g, b) {
+    return "#" + hex02(r) + hex02(g) + hex02(b);
+  }
+
+  function hex02(x) {
+    var str = "0" + x.toString(16);
+    return str.substring(str.length - 2);
+  }
+
+  function decS2(x) {
+    if (x < 10) {
+      return "&nbsp;" + x.toString(10);
+    } else {
+      return x.toString(10);
+    }
+  }
+
+  function dec02(x) {
+    var str = "0" + x.toString(10);
+    return str.substring(str.length - 2);
+  }
+
+
+  function dist(sx, sy, ex, ey) {
+    return Math.sqrt((ex - sx) * (ex - sx) + (ey - sy) * (ey - sy));
+  }
+
+  var canvas;
+  var ctx;
+  $(function () {
+    // 描画の準備
+    canvas = $("#mycanvas")[0];
+    ctx = canvas.getContext("2d");
+    // タイマーの準備
+    setInterval(function () {
+      timer();
+    }, 100);
+  });
+
+
+  var isTouch = ("ontouchstart" in window);
+
+
+  // 変数宣言
+
+  var score = 0;
+
+  var active = false;
+  var startTime = 0;
+
+  var initX = 160;
+  var initY = 280;
+
+  var bx = 0;
+  var by = 0;
+  var bvx = 0;
+  var bvy = 0;
+  var bspeed = 0;
+  var bactive = false;
+
+  var sx = 0;
+  var sy = 0;
+  var ex = 0;
+  var ey = 0;
+  var stime = 0;
+  var etime = 0;
+
+  var tx = 0;
+  var ty = 0;
+  var tvx = 2;
+  var tcy = 0;
+  var tr = 0;
+  var tactive = false;
+
+  var touched = false;
+
+
+  function touchstart(e) {
+    if (touched) {
+      return;
+    }
+    e.preventDefault();
+
+
+    var device = (isTouch ? event.changedTouches[0] : e);
+    var x = device.pageX;
+    var y = device.pageY;
+    if (dist(x, y, initX, initY) < 20 && !bactive) {
+      console.log(x + " " + y);
+      sx = x;
+      sy = y;
+      stime = new Date();
+      touched = true;
+    }
+  }
+
+  function touchmove(e) {
+    if (!touched) {
+      return;
+    }
+    e.preventDefault();
+
+    var device = (isTouch ? event.changedTouches[0] : e);
+    var x = device.pageX;
+    var y = device.pageY;
+    if (y < 200) {
+      touched = false;
+    }
+
+    ctx.fillStyle = "rgb(0, 255, 0)";
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, Math.PI * 2, false);
+    ctx.fill();
+  }
+
+  function touchend(e) {
+    if (!touched) {
+      return;
+    }
+    e.preventDefault();
+
+    var device = (isTouch ? event.changedTouches[0] : e);
+    var x = device.pageX;
+    var y = device.pageY;
+    ballStart(x, y);
+
+    touched = false;
+  }
+
+  function ballStart(x, y) {
+    var etime = new Date();
+
+    var d = dist(x, y, sx, sy);
+    var timediff = etime - stime;
+    if (timediff > 100) {
+      timediff = 100;
+    }
+    bspeed = 30 * d / timediff;
+    bvx = bspeed * (x - sx) / d;
+    bvy = bspeed * (y - sy) / d;
+
+    bx = x;
+    by = y;
+
+    bactive = true;
+  }
+
+
+  // 繰り返し実行する処理
+  function timer() {
+    if (active) {
+      ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgb(0, 255, 0)";
+      ctx.beginPath();
+      ctx.arc(150, 280, 20, 0, Math.PI * 2, false);
+      ctx.fill();
+      $("#score").html("SCORE: " + score);
+
+      // ターゲットの処理
+      targetMove();
+
+      // ボールの処理
+      if (bactive) {
+        ctx.fillStyle = "rgb(0, 255, 0)";
+        ctx.beginPath();
+        ctx.arc(bx, by, 20, 0, Math.PI * 2, false);
+        ctx.fill();
+        bx = bx + bvx;
+        by = by + bvy;
+        if (by < 0 || by > 320 || bx < 0 || bx > 320) {
+          bactive = false;
+        }
+      }
+
+      // 残り時間の処理
+      var currentTime = new Date();
+      var time = (currentTime - startTime) / 1000;
+      var rest = 30 - parseInt(time); // 残り30秒から
+      $("#remain").text("残り：　" + rest + "秒");
+      if (rest <= 0) {
+        active = false;
+        $("#btnA").prop("disabled", false);
+      }
+    }
+  }
+
+
+  // これより上は編集しなくて良い
+
+  // ターゲットの処理
+  function targetMove() {
+    if (tactive) {
+      tx += tvx;
+      ty = tcy + Math.sin(tx / 10) * tr * 10;
+      ctx.fillStyle = "rgb(255, 0, 0)";
+      ctx.beginPath();
+      ctx.arc(tx, ty, 40, 0, Math.PI * 2, false);
+      ctx.fill();
+      if (tx > 320 || tx < 0) {
+        tactive = false;
+      }
+      if (bactive && dist(tx, ty, bx, by) < 50) {
+        score += 10;
+        bactive = false;
+        tactive = false;
+      }
+    } else {
+      tactive = true;
+      tx = 0;
+      tcy = parseInt(Math.random() * 40);
+      tr = Math.random() * 10 - 5;
+    }
+
+
+
+
+
+
+  }
+  // 処理の登録
+  $(function () {
+    // $("#btnA").on("click", function (e) {
+    //   console.log("Click");
+    //   btnAClick(e);
+    // });
+    $("#check1").prop("checked", isTouch);
+    $("#check1").on("change", function (e) {
+      isTouch = $("#check1").prop("checked");
+      console.log(isTouch);
+
+    });
+
+    $("#mycanvas").on("touchstart mousedown", function (e) {
+      console.log("start");
+      touchstart(e);
+    });
+
+    $("#mycanvas").on("touchmove mousemove", function (e) {
+      var device = (isTouch ? event.changedTouches[0] : e);
+      var x = device.pageX;
+      var y = device.pageY;
+      console.log("move " + x + ", " + y);
+      touchmove(e);
+    });
+
+    $("#mycanvas").on("touched mouseup", function (e) {
+      console.log("end");
+      touchend(e);
+    });
+
+  });
+
   </script>
 </head>
 
@@ -41,6 +295,16 @@
   <input type="button" value="易しい" name="easystart " onclick="startGame1()" />
   <input type="button" value="普通" name="normalstart " onclick="startGame2()" />
   <input type="button" value="難しい" name="hardstart " onclick="startGame3()" />
+
+   <canvas id="mycanvas" width="320" height="350"></canvas>
+    <div id="remain">Time</div>
+    <div id="score">Score</div>
+    
+    
+    <label id="check1label">
+        <input type="checkbox" id="check1">
+        Touch/!Mouse
+    </label>
 </body>
 
 </html>

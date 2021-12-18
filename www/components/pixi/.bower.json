@@ -1,0 +1,15 @@
+{
+  "name": "pixi",
+  "homepage": "https://github.com/GoodBoyDigital/pixi.js",
+  "version": "6.2.0",
+  "_release": "6.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v6.2.0",
+    "commit": "ca0d2d81a530a8767ad250d6107032c4c1e72191"
+  },
+  "_source": "https://github.com/GoodBoyDigital/pixi.js.git",
+  "_target": "6.2.0",
+  "_originalSource": "pixi",
+  "_direct": true
+}
