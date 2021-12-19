@@ -1,9 +1,11 @@
 function startGame1() {
-
   active = true;
   bactive = false;
   tactive = false;
-  $("#btnA").prop("disabled", true);
+  $("#ranking").prop("disabled", true);
+  $("#normalstart").prop("disabled", true);
+  $("#hardstart").prop("disabled", true);
+  $("#easystart").prop("disabled", true);
   startTime = new Date();
   score = 0;
 }

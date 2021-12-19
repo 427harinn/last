@@ -211,7 +211,7 @@
       // 残り時間の処理
       var currentTime = new Date();
       var time = (currentTime - startTime) / 1000;
-      var rest = 30 - parseInt(time); // 残り30秒から
+      var rest = 15 - parseInt(time); // 残り30秒から
       $("#remain").text("残り：　" + rest + "秒");
       if (rest <= 0) {
         active = false;
@@ -291,19 +291,14 @@
 
 <body>
   <h1>上から落ちてくるのを<br>拾おう</h1>
-  <input type="button" value="ランキング" name="ranking"   onclick="ranking()" />
-  <input type="button" value="易しい" name="easystart " onclick="startGame1()" />
-  <input type="button" value="普通" name="normalstart " onclick="startGame2()" />
-  <input type="button" value="難しい" name="hardstart " onclick="startGame3()" />
+  <input type="button" value="ランキング" name="ranking"  id = "ranking" onclick="ranking()" />
+  <input type="button" value="易しい" name="easystart " id= "easystart" onclick="startGame1()" />
+  <input type="button" value="普通" name="normalstart " id = "normalstart" onclick="startGame2()" />
+  <input type="button" value="難しい" name="hardstart "  id = "hardstart" onclick="startGame3()" />
 
    <canvas id="mycanvas" width="320" height="350"></canvas>
     <div id="remain">Time</div>
     <div id="score">Score</div>
-    
-    
-    <label id="check1label">
-        <input type="checkbox" id="check1">
-        Touch/!Mouse
     </label>
 </body>
 
