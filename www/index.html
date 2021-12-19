@@ -215,7 +215,10 @@
       $("#remain").text("残り：　" + rest + "秒");
       if (rest <= 0) {
         active = false;
-        $("#btnA").prop("disabled", false);
+        $("#ranking").prop("disabled", false);
+        $("#normalstart").prop("disabled", false);
+        $("#hardstart").prop("disabled", false);
+        $("#easystart").prop("disabled", false);
       }
     }
   }
