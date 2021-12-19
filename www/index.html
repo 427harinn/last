@@ -77,8 +77,10 @@
 
 
   // 変数宣言
-
   var score = 0;
+
+  var ballx = 0;
+  var bally = 0;
 
   var active = false;
   var startTime = 0;
@@ -121,7 +123,6 @@
     var x = device.pageX;
     var y = device.pageY;
     if (dist(x, y, initX, initY) < 20 && !bactive) {
-      console.log(x + " " + y);
       sx = x;
       sy = y;
       stime = new Date();
@@ -130,18 +131,19 @@
   }
 
   function touchmove(e) {
+   console.log("動いている");
+    e.preventDefault();
+    var device = (isTouch ? event.changedTouches[0] : e);
+    var x = device.pageX;
+    var y = 300;
+    ballx = x;
+    bally = y;
     if (!touched) {
       return;
     }
-    e.preventDefault();
-
-    var device = (isTouch ? event.changedTouches[0] : e);
-    var x = device.pageX;
-    var y = device.pageY;
     if (y < 200) {
       touched = false;
     }
-
     ctx.fillStyle = "rgb(0, 255, 0)";
     ctx.beginPath();
     ctx.arc(x, y, 20, 0, Math.PI * 2, false);
@@ -188,7 +190,7 @@
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "rgb(0, 255, 0)";
       ctx.beginPath();
-      ctx.arc(150, 280, 20, 0, Math.PI * 2, false);
+      ctx.arc(ballx, bally, 20, 0, Math.PI * 2, false);
       ctx.fill();
       $("#score").html("SCORE: " + score);
 
@@ -237,7 +239,7 @@
       if (ty > 490) {
         tactive = false;
       }
-      if (bactive && dist(tx, ty, bx, by) < 50) {
+      if (dist(tx, ty, ballx, bally) < 50) {
         score += 10;
         bactive = false;
         tactive = false;
