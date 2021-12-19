@@ -79,6 +79,10 @@
   // 変数宣言
   var score = 0;
 
+  var easy = 0;
+  var normal = 0;
+  var hard = 0;
+
   var ballx = 0;
   var bally = 0;
 
@@ -195,7 +199,15 @@
       $("#score").html("SCORE: " + score);
 
       // ターゲットの処理
-      targetMove();
+      if(easy == 1) {
+        targetMove(10);
+      }
+      if(normal == 1) {
+        targetMove(30);
+      }
+      if(hard == 1) {
+        targetMove(50);
+      }
 
       // ボールの処理
       if (bactive) {
@@ -217,6 +229,9 @@
       $("#remain").text("残り：　" + rest + "秒");
       if (rest <= 0) {
         active = false;
+        easy = 0;
+        normal = 0;
+        hard = 0;
         $("#ranking").prop("disabled", false);
         $("#normalstart").prop("disabled", false);
         $("#hardstart").prop("disabled", false);
@@ -229,9 +244,10 @@
   // これより上は編集しなくて良い
 
   // ターゲットの処理
-  function targetMove() {
+  function targetMove(y) {
+    console.log(y);
     if (tactive) {
-      ty += 10;
+      ty += y;
       ctx.fillStyle = "rgb(255, 0, 0)";
       ctx.beginPath();
       ctx.arc(tx, ty, 40, 0, Math.PI * 2, false);
