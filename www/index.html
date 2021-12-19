@@ -100,7 +100,7 @@
   var stime = 0;
   var etime = 0;
 
-  var tx = 0;
+  var tx = parseInt(Math.random() * 330);
   var ty = 0;
   var tvx = 2;
   var tcy = 0;
@@ -229,13 +229,12 @@
   // ターゲットの処理
   function targetMove() {
     if (tactive) {
-      tx += tvx;
-      ty = tcy + Math.sin(tx / 10) * tr * 10;
+      ty += 10;
       ctx.fillStyle = "rgb(255, 0, 0)";
       ctx.beginPath();
       ctx.arc(tx, ty, 40, 0, Math.PI * 2, false);
       ctx.fill();
-      if (tx > 320 || tx < 0) {
+      if (ty > 490) {
         tactive = false;
       }
       if (bactive && dist(tx, ty, bx, by) < 50) {
@@ -245,7 +244,8 @@
       }
     } else {
       tactive = true;
-      tx = 0;
+      ty = 0;
+      tx = parseInt(Math.random() * 330);
       tcy = parseInt(Math.random() * 40);
       tr = Math.random() * 10 - 5;
     }

@@ -11,10 +11,25 @@ function startGame1() {
 }
 
 function startGame2() {
-  console.log("b");
+  active = true;
+  bactive = false;
+  tactive = false;
+  $("#ranking").prop("disabled", true);
+  $("#normalstart").prop("disabled", true);
+  $("#hardstart").prop("disabled", true);
+  $("#easystart").prop("disabled", true);
+  startTime = new Date();
+  score = 0;
 }
 
 function startGame3() {
-  console.log("c");
-
+  active = true;
+  bactive = false;
+  tactive = false;
+  $("#ranking").prop("disabled", true);
+  $("#normalstart").prop("disabled", true);
+  $("#hardstart").prop("disabled", true);
+  $("#easystart").prop("disabled", true);
+  startTime = new Date();
+  score = 0;
 }
