@@ -228,9 +228,6 @@
         $("#remain").text("残り：　" + rest + "秒");
         if (rest <= 0) {
           active = false;
-          easy = 0;
-          normal = 0;
-          hard = 0;
           imputName(score);
           $("#ranking").prop("disabled", false);
           $("#normalstart").prop("disabled", false);
