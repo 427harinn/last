@@ -1,6 +1,4 @@
-function ranking() {
-  console.log("rank");
-}//
+//
 //  tapGame.js
 //  MonacaFirstApp
 //
@@ -13,7 +11,7 @@ function toRanking() {
   // データ取得
   checkRanking();
   // ランキング画面へ遷移
-  window.location.href = "#ranking-page";
+  window.location.href = "ranking.html";
 }
 
 // 【mBaaS】保存したデータの検索と取得
@@ -30,7 +28,6 @@ function checkRanking() {
     .catch(function (error) {
       console.log("検索に失敗しました。エラー:" + error);
     });
-
   var highScore = ncmb.DataStore("GameScore_normal");
   highScore.order("score", true)
     .limit(5)
@@ -42,7 +39,6 @@ function checkRanking() {
     .catch(function (error) {
       console.log("検索に失敗しました。エラー:" + error);
     });
-
 
   var highScore = ncmb.DataStore("GameScore_hard");
   highScore.order("score", true)
@@ -77,7 +73,7 @@ function setData(array) {
     name.innerHTML = array[i].name + "さん";
     // スコアの設定
     var score = table.rows[i].cells[2];
-    score.innerHTML = array[i].score + "連打";
+    score.innerHTML = array[i].score + "点";
   }
 }
 
@@ -89,7 +85,7 @@ function setData_normal(array) {
     name.innerHTML = array[i].name + "さん";
     // スコアの設定
     var score = table.rows[i].cells[2];
-    score.innerHTML = array[i].score + "連打";
+    score.innerHTML = array[i].score + "点";
   }
 }
 
@@ -101,12 +97,12 @@ function setData_hard(array) {
     name.innerHTML = array[i].name + "さん";
     // スコアの設定
     var score = table.rows[i].cells[2];
-    score.innerHTML = array[i].score + "連打";
+    score.innerHTML = array[i].score + "点";
   }
 }
 
 function back() {
-  window.location.href = "#game-page";
+  window.location.href = "index.html";
 }
 
 
