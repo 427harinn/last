@@ -307,27 +307,25 @@
 </head>
 
 <body>
-  <h1>上から落ちてくるのを<br>拾おう</h1>
-  <input type="button" value="ランキング" name="ranking" id="ranking" onclick="toRanking()" />
-  <input type="button" value="易しい" name="easystart " id="easystart" onclick="startGame1()" />
-  <input type="button" value="普通" name="normalstart " id="normalstart" onclick="startGame2()" />
-  <input type="button" value="難しい" name="hardstart " id="hardstart" onclick="startGame3()" />
+  <div data-role="page" id="game-page">
+    <h1>上から落ちてくるのを<br>拾おう</h1>
+    <input type="button" value="ランキング" name="ranking" id="ranking" onclick="toRanking()" />
+    <input type="button" value="易しい" name="easystart " id="easystart" onclick="startGame1()" />
+    <input type="button" value="普通" name="normalstart " id="normalstart" onclick="startGame2()" />
+    <input type="button" value="難しい" name="hardstart " id="hardstart" onclick="startGame3()" />
 
-  <canvas id="mycanvas" width="320" height="350"></canvas>
-  <div id="remain">Time</div>
-  <div id="score">Score</div>
-  <div id=l ist-page>
-    <center>
-      <p>　</p>
-    </center>
+    <canvas id="mycanvas" width="320" height="350"></canvas>
+    <div id="remain">Time</div>
+    <div id="score">Score</div>
+    <div id=l ist-page>
+      <center>
+        <p>　</p>
+      </center>
+    </div>
   </div>
 
 
   <div data-role="page" id="ranking-page">
-    <div data-role="header" data-position="fixed" data-theme="c">
-      <h1></h1>
-      <a href="#list-page" data-icon="back" class="ui-btn-left">戻る</a>
-    </div>
     <div data-role="content">
       <center>
         <h1>ランキング EASY</h1><br />
@@ -421,6 +419,10 @@
           </tr>
         </table>
       </center>
+    </div>
+    <div data-role="header" data-position="fixed" data-theme="c">
+      <h1></h1>
+      <a href="#list-page" data-icon="back" class="ui-btn-left" onclick="back()">戻る</a>
     </div>
   </div>
   </label>

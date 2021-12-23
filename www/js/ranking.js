@@ -105,6 +105,9 @@ function setData_hard(array) {
   }
 }
 
+function back() {
+  window.location.href = "#game-page";
+}
 
 
 
