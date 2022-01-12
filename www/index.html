@@ -310,18 +310,121 @@
   <div data-role="page" id="game-page">
     <div data-role="header" data-position="fixed" data-theme="c">
       <h1>上から落ちてくるのを<br>拾おう</h1>
-      <input type="button" value="ランキング" name="ranking" id="ranking" onclick="toRanking()" />
-      <input type="button" value="易しい" name="easystart " id="easystart" onclick="startGame1()" />
-      <input type="button" value="普通" name="normalstart " id="normalstart" onclick="startGame2()" />
-      <input type="button" value="難しい" name="hardstart " id="hardstart" onclick="startGame3()" />
+    </div>
+    <input type="button" value="ランキング" name="ranking" id="ranking" onclick="toRanking()" />
+    <input type="button" value="易しい" name="easystart " id="easystart" onclick="startGame1()" />
+    <input type="button" value="普通" name="normalstart " id="normalstart" onclick="startGame2()" />
+    <input type="button" value="難しい" name="hardstart " id="hardstart" onclick="startGame3()" />
 
-      <canvas id="mycanvas" width="320" height="350"></canvas>
-      <div id="remain">Time</div>
-      <div id="score">Score</div>
-      <div id=l ist-page>
+    <canvas id="mycanvas" width="320" height="350"></canvas>
+    <div id="remain">Time</div>
+    <div id="score">Score</div>
+    <div id=l ist-page>
+      <center>
+        <p>　</p>
+      </center>
+    </div>
+  </div>
+
+  <div data-role="page" id="ranking-page">
+    <div data-role="header" data-position="fixed" data-theme="c">
+      <div data-role="content">
         <center>
-          <p>　</p>
+          <h1>ランキング EASY</h1><br />
+          <table id="rankingTable" border="1" width="90%" cellspacing="1" cellpadding="5">
+            <tr>
+              <td align="right" nowrap>１位</td>
+              <td id="name_1" align="center" width="200">no data</td>
+              <td id="score_1" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>２位</td>
+              <td id="name_2" align="center" width="200">no data</td>
+              <td id="name_2" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>３位</td>
+              <td id="name_3" align="center" width="200">no data</td>
+              <td id="name_3" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>４位</td>
+              <td id="name_4" align="center" width="200">no data</td>
+              <td id="name_4" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>５位</td>
+              <td id="name_5" align="center" width="200">no data</td>
+              <td id="name_5" align="center" width="150">-</td>
+            </tr>
+          </table>
         </center>
+
+        <center>
+          <h1>ランキング NORMAL</h1><br />
+          <table id="rankingTable_normal" border="1" width="90%" cellspacing="1" cellpadding="5">
+            <tr>
+              <td align="right" nowrap>１位</td>
+              <td id="name_1" align="center" width="200">no data</td>
+              <td id="score_1" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>２位</td>
+              <td id="name_2" align="center" width="200">no data</td>
+              <td id="name_2" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>３位</td>
+              <td id="name_3" align="center" width="200">no data</td>
+              <td id="name_3" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>４位</td>
+              <td id="name_4" align="center" width="200">no data</td>
+              <td id="name_4" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>５位</td>
+              <td id="name_5" align="center" width="200">no data</td>
+              <td id="name_5" align="center" width="150">-</td>
+            </tr>
+          </table>
+        </center>
+
+        <center>
+          <h1>ランキング HARD</h1><br />
+          <table id="rankingTable_hard" border="1" width="90%" cellspacing="1" cellpadding="5">
+            <tr>
+              <td align="right" nowrap>１位</td>
+              <td id="name_1" align="center" width="200">no data</td>
+              <td id="score_1" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>２位</td>
+              <td id="name_2" align="center" width="200">no data</td>
+              <td id="name_2" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>３位</td>
+              <td id="name_3" align="center" width="200">no data</td>
+              <td id="name_3" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>４位</td>
+              <td id="name_4" align="center" width="200">no data</td>
+              <td id="name_4" align="center" width="150">-</td>
+            </tr>
+            <tr>
+              <td align="right" nowrap>５位</td>
+              <td id="name_5" align="center" width="200">no data</td>
+              <td id="name_5" align="center" width="150">-</td>
+            </tr>
+          </table>
+        </center>
+      </div>
+      <div data-role="header" data-position="fixed" data-theme="c">
+        <h1></h1>
+        <a href="#list-page" data-icon="back" class="ui-btn-left" onclick="back()">戻る</a>
       </div>
     </div>
   </div>

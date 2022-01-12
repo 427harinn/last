@@ -11,7 +11,7 @@ function toRanking() {
   // データ取得
   checkRanking();
   // ランキング画面へ遷移
-  window.location.href = "ranking.html";
+  window.location.href = "#ranking-page";
 }
 
 // 【mBaaS】保存したデータの検索と取得
@@ -102,7 +102,7 @@ function setData_hard(array) {
 }
 
 function back() {
-  window.location.href = "index.html";
+  window.location.href = "#game-page";
 }
 
 
