@@ -5,7 +5,6 @@
 //  Created by Natsumo Ikeda on 2016/07/01.
 //  Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
-
 // 「ランキングを見る」ボタン押下時の処理
 function toRanking() {
   // データ取得
